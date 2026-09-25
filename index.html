@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aiello Construction, a licensed and insured general contractor led by Alberto Aiello. Remodels, additions, decks, roofing and repairs, with free written estimates.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 3h18v5H8v13H3z' fill='%23163B5C'/%3E%3C/svg%3E">
+<title>Aiello Construction</title>
+
+<!--
+  ==============================================================
+  AIELLO CONSTRUCTION  ·  website
+  ==============================================================
+  The whole site lives in this one file. Open it in any text
+  editor (Notepad, TextEdit, VS Code), change the words, save,
+  and open the file in a browser to see the result.
+
+  WHERE THINGS ARE
+    1. SITE SETTINGS  (right below this note)
+       Phone, email, service area, license number and hours.
+       Change them once here and every spot on the page updates.
+    2. LOOK AND FEEL  (the top of the <style> block)
+       Colors and fonts, one line each.
+    3. THE WORDS  Each part of the page starts with a banner
+       like  ===== SERVICES =====  Edit the text between the tags
+       and leave the tags themselves (<h2>, <p>, <li>) alone.
+    4. PHOTO  See the note inside the ABOUT section.
+
+  TIPS
+    - To remove a service or a step, delete its whole
+      <li> ... </li> block.
+    - To add one, copy an existing <li> ... </li> block and
+      edit the copy.
+    - Grey notes like this one are for you. Visitors never see
+      anything written inside a comment.
+  ==============================================================
+-->
+
+<script>
+  // ======================= SITE SETTINGS =======================
+  // Change the text inside the quotes. Keep the quotes and commas.
+  const SITE = {
+    businessName: "Aiello Construction",
+    ownerName:    "Alberto Aiello",
+    phone:        "(555) 555-0123",                  // the real phone number
+    email:        "alberto@aielloconstruction.com",   // the real email address
+    serviceArea:  "Your city and the surrounding towns",
+    license:      "GC #000000",                      // state license or registration number
+    hours:        "Mon to Fri, 7am to 5pm"
+  };
+  // =============================================================
+</script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap">
+
+<style>
+  /* ======================= LOOK AND FEEL ======================= */
+  :root {
+    --brand:     #163B5C;   /* main color: headings, buttons, contact section */
+    --accent:    #D9580C;   /* highlight color: call button, check marks, small rules */
+    --paper:     #F7F7F3;   /* page background */
+    --concrete:  #ECEEE9;   /* background of the About section */
+    --ink:       #1A222B;   /* text */
+    --ink-soft:  #4A5561;   /* lighter text */
+    --line:      #D3D6CF;   /* borders and thin rules */
+    --white:     #FFFFFF;
+
+    --font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;  /* big headings */
+    --font-body:    "Barlow", "Helvetica Neue", Arial, sans-serif;                            /* everything else */
+  }
+  /* ============================================================= */
+
+  /* ---------- Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; color-scheme: light; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--brand); }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--brand);
+  }
+  h1 { font-size: clamp(2.75rem, 7vw, 4.75rem); }
+  h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+  h3 { font-weight: 600; font-size: 1.2rem; line-height: 1.3; }
+  p { margin: 0; }
+  .wrap { max-width: 1100px; margin-inline: auto; padding-inline: 20px; }
+  .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .section-alt { background: var(--concrete); }
+  .section-head { max-width: 62ch; display: grid; gap: 0.9rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  .section-intro { color: var(--ink-soft); font-size: 1.1rem; }
+  .eyebrow {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 3px; background: var(--accent); flex: none; }
+  .skip { position: absolute; left: -999px; top: 0; z-index: 100; background: var(--ink); color: #fff; padding: 0.5rem 1rem; }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.8rem 1.3rem;
+    border: 2px solid transparent; border-radius: 4px;
+    font-weight: 600; font-size: 0.95rem; line-height: 1.1;
+    text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .btn-primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .btn-primary:hover { background: #0F2C46; border-color: #0F2C46; }
+  .btn-outline { background: transparent; color: var(--brand); border-color: var(--brand); }
+  .btn-outline:hover { background: var(--brand); color: #fff; }
+  .btn-accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-accent:hover { background: #B8470A; border-color: #B8470A; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .header-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem 1.5rem; padding-block: 0.85rem; }
+  .brand {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    color: var(--brand); text-decoration: none;
+    font-family: var(--font-display); font-weight: 800; font-size: 1.6rem;
+    text-transform: uppercase; letter-spacing: 0.03em; line-height: 1;
+  }
+  .brand-mark { width: 30px; height: 30px; flex: none; }
+  .site-nav { display: flex; gap: 1.4rem; margin-left: auto; }
+  .site-nav a { color: var(--ink); font-weight: 500; text-decoration: none; }
+  .site-nav a:hover { color: var(--brand); text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 760px) {
+    .site-nav { order: 3; flex-basis: 100%; gap: 1.1rem; font-size: 0.95rem; overflow-x: auto; }
+    .btn-call { margin-left: auto; }
+    .phone-inline { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding-block: clamp(3rem, 8vw, 6rem);
+    border-bottom: 1px solid var(--line);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(rgba(22, 59, 92, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 59, 92, 0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
+    gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  }
+  .hero-copy { display: grid; gap: 1.4rem; }
+  .lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 58ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  /* The "job-site sign" panel */
+  .site-sign { background: var(--white); border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--brand); }
+  .sign-band {
+    background: var(--brand); color: #fff; padding: 0.75rem 1.1rem;
+    font-family: var(--font-display); font-weight: 800; font-size: 1.4rem;
+    text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.1;
+  }
+  .sign-band small {
+    display: block; margin-top: 0.2rem;
+    font-family: var(--font-body); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.12em; opacity: 0.85;
+  }
+  .site-sign dl { margin: 0; padding: 1.1rem; display: grid; gap: 0.85rem; }
+  .site-sign dl > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.5rem; align-items: baseline; }
+  .site-sign dt { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }
+  .site-sign dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+  .site-sign dd a { color: var(--ink); text-decoration: none; }
+  .site-sign dd a:hover { color: var(--brand); text-decoration: underline; }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2.25rem 2.5rem;
+  }
+  .services-grid li { border-top: 2px solid var(--ink); padding-top: 1rem; display: grid; gap: 0.5rem; align-content: start; }
+  .services-grid p { color: var(--ink-soft); }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid; grid-template-columns: minmax(240px, 380px) 1fr;
+    gap: clamp(2rem, 5vw, 4rem); align-items: start;
+  }
+  .about-photo { margin: 0; border: 3px solid var(--ink); background: var(--white); aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; }
+  .about-photo svg, .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-copy { display: grid; gap: 1rem; max-width: 62ch; }
+  .checks { list-style: none; margin: 0.5rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+  .checks li { position: relative; padding-left: 1.75rem; font-weight: 500; }
+  .checks li::before {
+    content: ""; position: absolute; left: 0.35rem; top: 0.3rem;
+    width: 0.45rem; height: 0.85rem;
+    border-right: 3px solid var(--accent); border-bottom: 3px solid var(--accent);
+    transform: rotate(45deg);
+  }
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-photo { max-width: 360px; }
+  }
+
+  /* ---------- How it works ---------- */
+  .steps {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 2rem 1.5rem;
+  }
+  .steps li { border-left: 2px solid var(--line); padding-left: 1rem; display: grid; gap: 0.4rem; align-content: start; }
+  .step-num { font-family: var(--font-display); font-weight: 800; font-size: 3rem; line-height: 1; color: var(--accent); }
+  .steps p { color: var(--ink-soft); font-size: 1rem; }
+
+  /* ---------- Contact ---------- */
+  .section-dark { background: var(--brand); color: #fff; }
+  .section-dark h2 { color: #fff; }
+  .section-dark p { color: rgba(255, 255, 255, 0.85); }
+  .section-dark .eyebrow { color: #F5A66B; }
+  .section-dark .eyebrow::before { background: #F5A66B; }
+  .section-dark .checks li::before { border-color: #F5A66B; }
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .contact-copy { display: grid; gap: 1rem; max-width: 58ch; }
+  .section-dark .hint-title { margin-top: 0.5rem; color: #fff; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-card { border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.06); padding: 1.5rem; }
+  .contact-card dl { margin: 0; display: grid; gap: 1.1rem; }
+  .contact-card dt { margin-bottom: 0.2rem; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #F5A66B; }
+  .contact-card dd { margin: 0; font-weight: 600; font-size: 1.1rem; overflow-wrap: anywhere; }
+  .contact-card dd.big { font-family: var(--font-display); font-weight: 800; font-size: 2.3rem; line-height: 1; }
+  .contact-card a { color: #fff; text-decoration-color: rgba(255, 255, 255, 0.5); text-underline-offset: 4px; }
+  @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--ink); color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; padding-block: 1.5rem; }
+  .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; }
+  .site-footer strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top">
+      <!-- Small framing-square mark. Swap it for <img src="logo.png" alt=""> if you have a logo. -->
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M3 3h18v5H8v13H3z" fill="currentColor"/>
+        <path d="M11 3h1.4v2.2H11zM14.3 3h1.4v2.2h-1.4zM17.6 3H19v2.2h-1.4zM3 11h2.2v1.4H3zM3 14.3h2.2v1.4H3zM3 17.6h2.2V19H3z" fill="#F7F7F3" opacity="0.9"/>
+      </svg>
+      <span data-site="businessName"></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#process">How it works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-accent btn-call" data-tel href="#contact">Call <span class="phone-inline" data-site="phone"></span></a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Licensed general contractor</p>
+      <h1>Remodels, additions and repairs, built to last.</h1>
+      <p class="lede">Aiello Construction is a licensed and insured general contractor led by Alberto Aiello. You get a written estimate before any work starts, one point of contact from the first site visit to the final walkthrough, and a job site that is cleaned up every day.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Request an estimate</a>
+        <a class="btn btn-outline" href="#services">See services</a>
+      </div>
+    </div>
+
+    <!-- The details in this panel are filled in from SITE SETTINGS at the top of the file. -->
+    <aside class="site-sign" aria-label="Business details">
+      <div class="sign-band">
+        <span data-site="businessName"></span>
+        <small>General contractor</small>
+      </div>
+      <dl>
+        <div><dt>Contractor</dt><dd data-site="ownerName"></dd></div>
+        <div><dt>Serving</dt><dd data-site="serviceArea"></dd></div>
+        <div><dt>License</dt><dd data-site="license"></dd></div>
+        <div><dt>Phone</dt><dd><a data-tel href="#contact" data-site="phone"></a></dd></div>
+        <div><dt>Hours</dt><dd data-site="hours"></dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================ SERVICES ============================ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Services</p>
+      <h2>What we build and fix</h2>
+      <p class="section-intro">Residential work of every size, from a one-day repair to a full addition. Every job gets a written scope, a schedule and the permits it needs.</p>
+    </div>
+
+    <!-- Each <li> is one service. Delete one, or copy one to add a new service. -->
+    <ul class="services-grid">
+      <li>
+        <h3>Kitchen and bath remodels</h3>
+        <p>Layout changes, cabinets and counters, tile, plumbing and electrical, coordinated so your kitchen or bath is out of service for as few days as possible.</p>
+      </li>
+      <li>
+        <h3>Additions and finished basements</h3>
+        <p>New rooms, second-story additions, in-law suites and basement finishing, from footings and framing through the final coat of paint.</p>
+      </li>
+      <li>
+        <h3>Decks, porches and exterior work</h3>
+        <p>Composite and wood decks, covered porches, stairs and railings, built to code and built for the weather.</p>
+      </li>
+      <li>
+        <h3>Roofing, siding and windows</h3>
+        <p>Replacement roofs, siding, gutters, and energy-efficient window and door installations.</p>
+      </li>
+      <li>
+        <h3>Repairs and small jobs</h3>
+        <p>Rot repair, drywall, doors, trim, water damage and the list of things that never got fixed. No job is too small to quote.</p>
+      </li>
+      <li>
+        <h3>Permits, trades and scheduling</h3>
+        <p>As your general contractor, we pull the permits, schedule the inspections and manage the electricians, plumbers and other trades on your job.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="section section-alt" id="about">
+  <div class="wrap about-grid">
+
+    <!--
+      PHOTO: put a photo file named alberto.jpg in the same folder as this
+      file, then delete the whole <svg> ... </svg> block below and put this
+      line in its place:
+
+        <img src="alberto.jpg" alt="Alberto Aiello on a job site">
+    -->
+    <figure class="about-photo">
+      <svg viewBox="0 0 400 500" role="img" aria-label="Placeholder for a photo of Alberto Aiello">
+        <defs>
+          <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="12" stroke="#C9CDC5" stroke-width="2"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="500" fill="#E3E6E0"/>
+        <rect width="400" height="500" fill="url(#hatch)"/>
+        <rect x="70" y="205" width="260" height="90" fill="#F7F7F3" stroke="#4A5561" stroke-width="2"/>
+        <text x="200" y="243" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1A222B">Photo of Alberto</text>
+        <text x="200" y="270" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-size="14" fill="#4A5561">Replace this box with alberto.jpg</text>
+      </svg>
+    </figure>
+
+    <div class="about-copy">
+      <p class="eyebrow">About</p>
+      <h2>Meet Alberto Aiello</h2>
+      <p>Alberto started Aiello Construction to run jobs with a clear plan, a fair price and a contractor who answers the phone. He is on site for every project, works with a small group of trades he has known for years, and treats your house with the same care as his own.</p>
+      <p>Whether it is a weekend repair or a months-long addition, you deal with Alberto directly, from the first walkthrough to the last coat of paint.</p>
+      <ul class="checks">
+        <li>Licensed and insured</li>
+        <li>Free written estimates</li>
+        <li>Permits and inspections handled</li>
+        <li>Clean job site, every day</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HOW IT WORKS ============================ -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Five steps from first call to final walkthrough</h2>
+      <p class="section-intro">The same process on every job, so you always know what happens next.</p>
+    </div>
+
+    <!-- Each <li> is one step. The number is plain text, so renumber if you add or remove a step. -->
+    <ol class="steps">
+      <li>
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>Site visit</h3>
+        <p>We walk the project together, talk through options and take measurements. No charge.</p>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>Written estimate</h3>
+        <p>You get an itemized scope, material allowances and a realistic timeline before any work starts.</p>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>Permits and scheduling</h3>
+        <p>We pull the permits, order materials and line up the electrician, plumber and any other trades.</p>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">4</span>
+        <h3>The build</h3>
+        <p>Work starts on the agreed date. You get regular updates, one point of contact and a site that is cleaned up every evening.</p>
+      </li>
+      <li>
+        <span class="step-num" aria-hidden="true">5</span>
+        <h3>Final walkthrough</h3>
+        <p>We go through every item on the punch list together. The job is done when you say it is.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="section section-dark" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-copy">
+      <p class="eyebrow">Contact</p>
+      <h2>Tell us about your project</h2>
+      <p>Call, text or email with a few details about the job and you will hear back within one business day. Estimates are free and always in writing.</p>
+      <p class="hint-title">Helpful to include</p>
+      <ul class="checks">
+        <li>What you would like done</li>
+        <li>The property address</li>
+        <li>Your ideal timeline</li>
+        <li>A few photos, if you have them</li>
+      </ul>
+    </div>
+
+    <!-- Filled in from SITE SETTINGS at the top of the file. -->
+    <div class="contact-card">
+      <dl>
+        <div><dt>Phone</dt><dd class="big"><a data-tel href="#contact" data-site="phone"></a></dd></div>
+        <div><dt>Email</dt><dd><a data-mailto href="#contact" data-site="email"></a></dd></div>
+        <div><dt>Hours</dt><dd data-site="hours"></dd></div>
+        <div><dt>Service area</dt><dd data-site="serviceArea"></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p><strong data-site="businessName"></strong> &middot; <span data-site="ownerName"></span>, General Contractor &middot; License <span data-site="license"></span></p>
+    <p>&copy; <span id="year"></span> <span data-site="businessName"></span></p>
+  </div>
+</footer>
+
+<script>
+  // Puts the SITE SETTINGS onto the page. Nothing below this line needs editing.
+  (function () {
+    var spots = document.querySelectorAll("[data-site]");
+    for (var i = 0; i < spots.length; i++) {
+      var key = spots[i].getAttribute("data-site");
+      if (SITE[key]) spots[i].textContent = SITE[key];
+    }
+    var telLinks = document.querySelectorAll("[data-tel]");
+    for (var j = 0; j < telLinks.length; j++) {
+      telLinks[j].setAttribute("href", "tel:" + SITE.phone.replace(/[^0-9+]/g, ""));
+    }
+    var mailLinks = document.querySelectorAll("[data-mailto]");
+    for (var k = 0; k < mailLinks.length; k++) {
+      mailLinks[k].setAttribute("href", "mailto:" + SITE.email);
+    }
+    var year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
+  })();
+</script>
+
+</body>
+</html>
