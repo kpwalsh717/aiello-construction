@@ -13,7 +13,7 @@ const SITE = {
   ownerName:    "Alberto Aiello",
   // phone:        "(000) 000-0000",
   phone:        "(973) 432-8351",                         // the real phone number
-  email:        "aaiello41@aol.com",                      // the real email address
+  email:        "aielloconstructioncompany@gmail.com",                      // the real email address
   serviceArea:  "New Jersey",
   license:      "GC #13VH01733500",                       // state license or registration number
   hours:        "Mon to Fri, 9am to 5pm",
